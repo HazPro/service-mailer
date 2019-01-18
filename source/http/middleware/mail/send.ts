@@ -1,11 +1,9 @@
 import * as router from 'koa-router'
 import * as Koa from 'koa'
 import * as _ from 'lodash'
-import { Certificate, IKsuCertificate, IKsuUser } from '../../../cert'
 import { IConfig } from '../../../config'
 import { URL } from 'url'
 import { get } from 'request-promise'
-import { Stream } from 'stream'
 import { AttachmentData, Attachment } from 'mailgun-js'
 export interface IMessageAttachemnt {
     url: URL,
@@ -22,8 +20,8 @@ export default async function send(
     ctx: Koa.ParameterizedContext<{}, router.IRouterContext>,
     next: () => Promise<any>
 ) {
-    const ca: Certificate = _.get(ctx, 'ca')
-    const user: IKsuCertificate | IKsuUser = _.get(ctx, 'user')
+    // const ca: Certificate = _.get(ctx, 'ca')
+    // const user: IKsuCertificate | IKsuUser = _.get(ctx, 'user')
     const config: IConfig = _.get(ctx, 'config')
     const body: IMessage = _.get(ctx, 'request.body')
     if (/^(http|https):/.test(body.letter)) {

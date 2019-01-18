@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./source/index.ts"
+  },
   "dependencies": {
+    "@hazpro/auth": "^1.0.4",
+    "@hazpro/queue": "^1.0.0",
     "@types/mailgun-js": "^0.16.3",
     "jsonwebtoken": "^8.4.0",
     "koa": "^2.6.2",
