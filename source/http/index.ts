@@ -70,12 +70,26 @@ export default class HttpServer {
         })
     }
     async incomingTask(msg: IMessage) {
-        console.log(msg)
-        msg.ack()
+        const ctx = {
+            config: this.config,
+            request: {
+                body: msg.body.body as mailSend.IMailMessage
+            },
+            throw: (_, err) => {
+                this.logger.log('error', err)
+                msg.ack()
+            },
+            body: undefined
+        }
+        await mailSend.default(ctx, async () => { })
+        if (ctx.body && !ctx.body.error) {
+            console.log(ctx.body)
+            msg.ack()
+        }
     }
     async subscribeToTask() {
         await this.queue.open()
-        this.queue.consumeQueue('email', this.incomingTask)
+        this.queue.consumeQueue('email', this.incomingTask.bind(this))
     }
 
     start() {

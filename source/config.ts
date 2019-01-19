@@ -20,8 +20,8 @@ const config: IConfig = {
         port: process.env.PORT || 3000
     },
     mail: {
-        api: '123123',
-        domain: 'test.com'
+        api: process.env.MAILGUUN_TOKEN || '29f838318e75f5290eb7a74aa0a48291-060550c6-5c142be5',
+        domain: process.env.MAILGUUN_DOMAIN || 'sandboxa731d8d9cb9a47a682d2502c878965a4.mailgun.org'
     },
     queue: {
         exchangeName: 'ksu',
